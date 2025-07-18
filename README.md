@@ -72,7 +72,6 @@ python todo.py gui
 ## 📸 Screenshot
   <img width="1920" height="1020" alt="Screenshot 2025-07-18 113507" src="https://github.com/user-attachments/assets/0445d157-1898-4aae-90eb-0a63048fd64d" />
 
-
-📃 License
-This project is open-source and free to use under the MIT License.
+## 📃 License
+ This project is open-source and free to use under the MIT License.
 
