@@ -1,0 +1,66 @@
+1. How do you open and write to a file in Python?
+In Python, you can open a file using the built-in open() function. To write to a file, open it in write ('w'), append ('a'), or exclusive creation ('x') mode. For example, with open('file.txt', 'w') as f: opens the file in write mode. The with statement is used to ensure the file is properly closed after writing. Inside the block, f.write('Hello') can be used to write text. If the file already exists in 'w' mode, it will overwrite the content. Always close the file using f.close() if not using with.
+
+2. What are common file modes?
+Python supports several file modes used with the open() function:
+'r': Read mode (default), opens file for reading.
+'w': Write mode, creates a new file or overwrites existing content.
+'a': Append mode, adds content to the end of the file without overwriting.
+'x': Exclusive creation, fails if file already exists.
+'b': Binary mode, used with other modes like 'rb' or 'wb'.
+'t': Text mode (default).
+'r+': Read and write mode.
+  These modes can be combined, like 'wb' (write binary). Choosing the correct mode ensures the file is accessed and modified safely and correctly.
+
+3. What’s the use of .strip()?
+The .strip() method in Python is used to remove leading and trailing whitespace characters (spaces, tabs, newlines) from a string. It is commonly used when reading input from files or user input where extra whitespace might be unintentionally added. For example, '  hello  \n'.strip() would return 'hello'. This method helps in cleaning and standardizing strings before processing them further. Specific characters can also be passed to .strip(characters) to remove only those. There are also .lstrip() and .rstrip() methods that remove whitespace from only the left or right side of the string.
+
+4. How do lists work in Python?
+Lists in Python are ordered, mutable (changeable) collections of elements. They can hold items of any data type (integers, strings, even other lists), and can be modified after creation. A list can be created using square brackets: my_list = [1, 2, 3]. Elements can be accessed using indices, where indexing starts at 0. Lists support various operations like appending (.append()), inserting, deleting (.remove() or del), and slicing (my_list[1:3]). Python lists are dynamic, meaning they can grow or shrink in size during runtime, making them very versatile for data manipulation.
+
+5. What is the difference between append() and insert()?
+Both append() and insert() are used to add elements to a list, but in different ways. append() adds an element to the end of the list:
+	my_list.append(5)
+This is the most common way to grow a list. On the other hand, insert() allows to add element at a specific position in the list:
+	my_list.insert(2, 10)
+This inserts 10 at index 2. While append() is faster and simpler, insert() provides more control over the element's position. Should use append() for stacking data and insert() when order matters.
+
+6. How can you remove elements from a list?
+Python provides several ways to remove elements from a list:
+	remove(value): Deletes the first occurrence of the given value.
+	pop(index): Removes and returns the element at the given index (defaults to the last element).
+	del list[index]: Deletes an element by index without returning it.
+List comprehensions can also be used to remove elements conditionally:
+filtered = [x for x in my_list if x != target]
+Each method is useful depending on the use case. `pop()` is handy when working with stack-like structures, while `remove()` is used when the value is known.
+
+7. What are context managers (`with` statement)?
+A context manager in Python is a construct that ensures proper setup and cleanup of resources. The most common use of context managers is with the `with` statement when working with files:
+with open('file.txt', 'r') as f:
+    data = f.read()
+This automatically handles opening and safely closing the file, even if errors occur. Context managers implement the `__enter__()` and `__exit__()` methods behind the scenes. You can also create custom context managers using classes or decorators like `@contextlib.contextmanager`. They help manage resources like files, network connections, or database sessions more reliably and concisely.
+
+8. How do you loop through a file line by line?
+To read a file line by line in Python, use a loop directly on the file object:
+with open('file.txt', 'r') as f:
+    for line in f:
+        print(line.strip())
+This is efficient and memory-friendly, especially for large files, because it reads one line at a time instead of loading the entire file into memory. Using strip() removes unwanted newlines. Alternatively, readlines() can be used to load all lines into a list, but it is not suitable for very large files due to higher memory consumption.
+
+9. What is a data structure?
+A data structure is a way of organizing, storing, and accessing data efficiently. Common data structures in Python include lists, dictionaries, sets, and tuples. Each serves a different purpose:
+Lists store ordered, changeable items.
+Dictionaries store key-value pairs for quick lookup.
+Sets store unique, unordered elements.
+Tuples store ordered, immutable elements.
+  Data structures are the backbone of efficient algorithms and software design. They allow developers to manage data logically and perform operations like searching, sorting, inserting, and deleting with optimal performance.
+
+10. What happens if the file doesn't exist?
+If you try to open a file in read mode ('r') and it doesn’t exist, Python raises a FileNotFoundError. This can be handled using a try-except block:
+try:
+    with open('file.txt', 'r') as f:
+        content = f.read()
+except FileNotFoundError:
+    print("File not found.")
+However, if you open a file in write ('w') or append ('a') mode and the file doesn’t exist, Python will create it automatically. Therefore, always be cautious about the mode you're using and handle exceptions gracefully when working with file operations.
+
